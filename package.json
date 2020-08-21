@@ -7,9 +7,18 @@
     "build": "next build",
     "start": "next start"
   },
+  "devDependencies": {
+    "babel-plugin-styled-components": "latest"
+  },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "axios": "^0.20.0",
+    "formik": "^2.1.5",
     "next": "9.5.2",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-uuid": "^1.0.2",
+    "styled-components": "^5.1.1"
   }
 }
