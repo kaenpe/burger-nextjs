@@ -1,8 +1,9 @@
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import React, { useContext, useState } from 'react';
 import uuid from 'react-uuid';
 import styled from 'styled-components';
 import { ModalContext } from '../../contexts/ModalContext';
+import Modal from '../Modal/Modal';
 import Burger from './Burger';
 import BurgerControls, { Label } from './BurgerControls';
 const ControlsWrapper = styled.div`
@@ -12,6 +13,12 @@ const ControlsWrapper = styled.div`
   flex-direction: column;
   grid-area: controls;
   padding: 15px;
+`;
+
+const StyledModalButtons = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
 `;
 const BurgerBuilder = () => {
   const [ingredients, setIngredients] = useState([
@@ -74,6 +81,41 @@ const BurgerBuilder = () => {
   const { setShowModal } = useContext(ModalContext);
   return (
     <>
+      <Modal>
+        <Typography variant='h4'>Your Order</Typography>
+        <Typography>
+          You have ordered a burger with the following ingredients:
+          <ul>
+            {ingredients.map(({ type, quantity }, index) => (
+              <li>
+                {type}: {quantity}
+              </li>
+            ))}
+          </ul>
+        </Typography>
+        <Typography gutterBottom={true} align='center'>
+          {' '}
+          Total price is: {totalPrice}$
+        </Typography>{' '}
+        <StyledModalButtons className='modal-buttons'>
+          <Button
+            style={{ minWidth: '150px' }}
+            variant='contained'
+            color='primary'
+            onClick={() => setShowModal(false)}
+          >
+            Cancel
+          </Button>
+          <Button
+            style={{ minWidth: '150px' }}
+            variant='contained'
+            color='primary'
+          >
+            Confirm
+          </Button>
+        </StyledModalButtons>
+      </Modal>
+
       <Burger key={uuid()} ing={ingredientsOrder}></Burger>
       <ControlsWrapper>
         {ingredients.map((ing) => (

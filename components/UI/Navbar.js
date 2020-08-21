@@ -14,14 +14,15 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    gridColumn: 'span header-start/header-end',
-    height: 'max-content',
   },
   flexContainer: {
     justifyContent: 'flex-end',
   },
   colorPrimary: {
     backgroundColor: '#20272F',
+    gridColumn: 'span header-start/header-end',
+    height: 'max-content',
+    zIndex: '98',
   },
   textColorInherit: {
     '&:hover': {
@@ -47,10 +48,7 @@ const Navbar = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar
-        position='sticky'
-        classes={{ colorPrimary: classes.colorPrimary, root: classes.root }}
-      >
+      <AppBar position='fixed' classes={{ colorPrimary: classes.colorPrimary }}>
         <Tabs
           value={value}
           onChange={handleChange}

@@ -8,6 +8,7 @@ export default function Home() {
       <Head>
         <title>Burger Builder</title>
       </Head>
+
       <Layout>
         <BurgerBuilder></BurgerBuilder>
       </Layout>

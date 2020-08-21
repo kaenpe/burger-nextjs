@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Modal from '../Modal/Modal';
+import Footer from './Footer';
 import Navbar from './Navbar';
 const LayoutWrapper = styled.main`
   height: 100vh;
@@ -14,8 +14,9 @@ const Layout = ({ children }) => {
   return (
     <LayoutWrapper className='layout-wrapper'>
       <Navbar></Navbar>
-      <Modal></Modal>
+
       {children}
+      <Footer></Footer>
     </LayoutWrapper>
   );
 };
