@@ -85,14 +85,16 @@ const BurgerBuilder = () => {
         <Typography variant='h4'>Your Order</Typography>
         <Typography>
           You have ordered a burger with the following ingredients:
-          <ul>
-            {ingredients.map(({ type, quantity }, index) => (
-              <li>
-                {type}: {quantity}
-              </li>
-            ))}
-          </ul>
         </Typography>
+        <ul>
+          {ingredients.map(({ type, quantity }, index) => (
+            <li key={index}>
+              <Typography>
+                {type}: {quantity}
+              </Typography>
+            </li>
+          ))}
+        </ul>
         <Typography gutterBottom={true} align='center'>
           {' '}
           Total price is: {totalPrice}$

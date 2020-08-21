@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Footer from './Footer';
 import Navbar from './Navbar';
 const LayoutWrapper = styled.main`
   height: 100vh;
@@ -16,7 +15,6 @@ const Layout = ({ children }) => {
       <Navbar></Navbar>
 
       {children}
-      <Footer></Footer>
     </LayoutWrapper>
   );
 };
