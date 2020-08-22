@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 import Navbar from './Navbar';
-const StyledLayout = styled.main`
+const StyledIndexLayout = styled.main`
   height: 100vh;
   display: grid;
   grid-auto-rows: 56px 1fr auto;
@@ -9,14 +8,13 @@ const StyledLayout = styled.main`
   grid-template-areas: 'header header header' 'burger burger burger' 'controls controls controls';
   z-index: 100;
 `;
-const Layout = ({ children }) => {
+const IndexLayout = ({ children }) => {
   return (
-    <StyledLayout className='layout-wrapper'>
+    <StyledIndexLayout className='layout-wrapper'>
       <Navbar></Navbar>
-
       {children}
-    </StyledLayout>
+    </StyledIndexLayout>
   );
 };
 
-export default Layout;
+export default IndexLayout;

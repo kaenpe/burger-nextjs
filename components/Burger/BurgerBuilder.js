@@ -1,8 +1,10 @@
 import { Button, Typography } from '@material-ui/core';
-import React, { useContext, useState } from 'react';
+import Link from 'next/link';
+import { useContext, useState } from 'react';
 import uuid from 'react-uuid';
 import styled from 'styled-components';
 import { ModalContext } from '../../contexts/ModalContext';
+import { OrderContext } from '../../contexts/OrderContext';
 import Modal from '../Modal/Modal';
 import Burger from './Burger';
 import BurgerControls, { StyledLabel } from './BurgerControls';
@@ -34,12 +36,9 @@ const BurgerBuilder = () => {
     { type: 'Bacon', price: 0.7, quantity: 0 },
   ]);
 
-  const [ingredientsOrder, setIngredientsOrder] = useState([
-    { type: 'Meat', id: uuid() },
-  ]);
-
   const [totalPrice, setTotalPrice] = useState(1.3);
-
+  const { showModal, setShowModal } = useContext(ModalContext);
+  const { ingredientsOrder, setIngredientsOrder } = useContext(OrderContext);
   const addIngredientHandler = (ing) => {
     setIngredients((prevState) =>
       prevState.map((ingredient) =>
@@ -84,8 +83,6 @@ const BurgerBuilder = () => {
     );
   };
 
-  const { showModal, setShowModal } = useContext(ModalContext);
-
   return (
     <>
       <Modal>
@@ -118,13 +115,15 @@ const BurgerBuilder = () => {
           >
             Cancel
           </Button>
-          <Button
-            style={{ minWidth: '120px', margin: '10px' }}
-            variant='contained'
-            color='primary'
-          >
-            Confirm
-          </Button>
+          <Link href='/checkout/'>
+            <Button
+              style={{ minWidth: '120px', margin: '10px' }}
+              variant='contained'
+              color='primary'
+            >
+              Confirm
+            </Button>
+          </Link>
         </StyledModalButtons>
       </Modal>
 

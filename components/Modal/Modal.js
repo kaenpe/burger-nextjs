@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { ModalContext } from '../../contexts/ModalContext';
 const StyledBackdrop = styled.div`

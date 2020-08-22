@@ -1,17 +1,18 @@
 import Head from 'next/head';
 import BurgerBuilder from '../components/Burger/BurgerBuilder';
-import Layout from '../components/UI/Layout';
+import IndexLayout from '../components/UI/IndexLayout';
+import Navbar from '../components/UI/Navbar';
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Burger Builder</title>
+        <title>Burger </title>
       </Head>
-
-      <Layout>
+      <Navbar></Navbar>
+      <IndexLayout>
         <BurgerBuilder></BurgerBuilder>
-      </Layout>
+      </IndexLayout>
     </>
   );
 }

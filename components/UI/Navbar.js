@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import React from 'react';
 
 function a11yProps(index) {
   return {
@@ -13,16 +12,13 @@ function a11yProps(index) {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   flexContainer: {
     justifyContent: 'flex-end',
   },
   colorPrimary: {
     backgroundColor: theme.palette.primary.main,
-    gridColumn: 'span header-start/header-end',
-    height: 'max-content',
+    top: '0',
+    left: '0',
     zIndex: '98',
   },
   textColorInherit: {

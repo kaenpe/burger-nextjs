@@ -2,8 +2,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import App from 'next/app';
 import Head from 'next/head';
-import React from 'react';
 import ModalContextProvider from '../contexts/ModalContext';
+import OrderContextProvider from '../contexts/OrderContext';
 import theme from '../src/theme';
 
 class MyApp extends App {
@@ -22,12 +22,18 @@ class MyApp extends App {
       <>
         <Head>
           <title>Burger Builder</title>
+          <meta
+            name='viewport'
+            content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no'
+          />
         </Head>
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <ModalContextProvider>
-            <Component {...pageProps} />
+            <OrderContextProvider>
+              <Component {...pageProps}></Component>
+            </OrderContextProvider>
           </ModalContextProvider>
         </ThemeProvider>
       </>
