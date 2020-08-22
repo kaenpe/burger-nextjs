@@ -1,5 +1,5 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
-import { animated, useTransition } from 'react-spring';
 import styled from 'styled-components';
 import BurgerIngredients from './BurgerIngredients';
 const StyledIngredient = styled.div`
@@ -72,27 +72,23 @@ const StyledIngredient = styled.div`
   }
 `;
 
-const Burger = ({ ingredients }) => {
-  const transitions = useTransition(ingredients, (ing) => ing.id, {
-    from: {
-      transition: 'all 200ms ease-out',
-      transform: 'translateX(-100vw)',
-      maxHeight: '0.1px',
-    },
-    enter: {
-      transform: 'translateX(0)',
-      maxHeight: '52px',
-    },
-    leave: { transform: 'translateX(-100vw)', maxHeight: '0.1px' },
-  });
+const Burger = ({ ing }) => {
   return (
     <StyledIngredient className='burger'>
       <div className='BreadTop'></div>
-      {transitions.map(({ item, props, key }) => (
-        <animated.div key={key} style={props}>
-          <BurgerIngredients type={item.type}></BurgerIngredients>
-        </animated.div>
-      ))}
+      <AnimatePresence>
+        {ing.map(({ type, id }) => (
+          <motion.div
+            transition={{ duration: 0.5 }}
+            key={id}
+            initial={{ x: '-110vw', height: 0 }}
+            animate={{ x: 0, height: 'auto' }}
+            exit={{ x: '-110vw', height: 0 }}
+          >
+            <BurgerIngredients type={type}></BurgerIngredients>
+          </motion.div>
+        ))}
+      </AnimatePresence>
       <div className='BreadBottom'></div>
     </StyledIngredient>
   );

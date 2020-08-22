@@ -48,6 +48,7 @@ const Modal = ({ children }) => {
 
       <StyledModal
         variants={variants}
+        initial={'hidden'}
         transition={{ duration: 1 }}
         animate={showModal ? 'visible' : 'hidden'}
       >
