@@ -5,7 +5,6 @@ import uuid from 'react-uuid';
 import styled from 'styled-components';
 import { IngredientsContext } from '../../contexts/IngredientsContext';
 import { ModalContext } from '../../contexts/ModalContext';
-import { OrderContext } from '../../contexts/OrderContext';
 import Modal from '../Modal/Modal';
 import Burger from './Burger';
 import BurgerControls, { StyledLabel } from './BurgerControls';
@@ -32,8 +31,12 @@ const StyledPriceLabel = styled(StyledLabel)`
 const BurgerBuilder = () => {
   const [totalPrice, setTotalPrice] = useState(1.3);
   const { showModal, setShowModal } = useContext(ModalContext);
-  const { ingredientsOrder, setIngredientsOrder } = useContext(OrderContext);
-  const { ingredients, setIngredients } = useContext(IngredientsContext);
+  const {
+    ingredients,
+    setIngredients,
+    ingredientsOrder,
+    setIngredientsOrder,
+  } = useContext(IngredientsContext);
   useEffect(() => {
     return () => {
       setShowModal(false);

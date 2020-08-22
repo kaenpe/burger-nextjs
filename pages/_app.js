@@ -4,7 +4,6 @@ import App from 'next/app';
 import Head from 'next/head';
 import IngredientsContextProvider from '../contexts/IngredientsContext';
 import ModalContextProvider from '../contexts/ModalContext';
-import OrderContextProvider from '../contexts/OrderContext';
 import theme from '../src/theme';
 
 class MyApp extends App {
@@ -33,9 +32,7 @@ class MyApp extends App {
           <CssBaseline />
           <ModalContextProvider>
             <IngredientsContextProvider>
-              <OrderContextProvider>
-                <Component {...pageProps}></Component>
-              </OrderContextProvider>
+              <Component {...pageProps}></Component>
             </IngredientsContextProvider>
           </ModalContextProvider>
         </ThemeProvider>

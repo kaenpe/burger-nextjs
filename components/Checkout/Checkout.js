@@ -1,11 +1,11 @@
 import { Button, Container, Typography } from '@material-ui/core';
 import Link from 'next/link';
 import React, { useContext } from 'react';
-import { OrderContext } from '../../contexts/OrderContext';
+import { IngredientsContext } from '../../contexts/IngredientsContext';
 import Burger from '../Burger/Burger';
 
 const Checkout = () => {
-  const { ingredientsOrder } = useContext(OrderContext);
+  const { ingredientsOrder } = useContext(IngredientsContext);
   return (
     <Container
       style={{
