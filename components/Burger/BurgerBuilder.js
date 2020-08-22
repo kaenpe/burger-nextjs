@@ -1,8 +1,9 @@
 import { Button, Typography } from '@material-ui/core';
 import Link from 'next/link';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import uuid from 'react-uuid';
 import styled from 'styled-components';
+import { IngredientsContext } from '../../contexts/IngredientsContext';
 import { ModalContext } from '../../contexts/ModalContext';
 import { OrderContext } from '../../contexts/OrderContext';
 import Modal from '../Modal/Modal';
@@ -29,16 +30,15 @@ const StyledPriceLabel = styled(StyledLabel)`
 `;
 
 const BurgerBuilder = () => {
-  const [ingredients, setIngredients] = useState([
-    { type: 'Meat', price: 1.3, quantity: 1 },
-    { type: 'Cheese', price: 0.4, quantity: 0 },
-    { type: 'Salad', price: 0.5, quantity: 0 },
-    { type: 'Bacon', price: 0.7, quantity: 0 },
-  ]);
-
   const [totalPrice, setTotalPrice] = useState(1.3);
   const { showModal, setShowModal } = useContext(ModalContext);
   const { ingredientsOrder, setIngredientsOrder } = useContext(OrderContext);
+  const { ingredients, setIngredients } = useContext(IngredientsContext);
+  useEffect(() => {
+    return () => {
+      setShowModal(false);
+    };
+  }, []);
   const addIngredientHandler = (ing) => {
     setIngredients((prevState) =>
       prevState.map((ingredient) =>

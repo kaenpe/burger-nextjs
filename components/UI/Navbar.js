@@ -17,8 +17,10 @@ const useStyles = makeStyles((theme) => ({
   },
   colorPrimary: {
     backgroundColor: theme.palette.primary.main,
+
     top: '0',
     left: '0',
+
     zIndex: '98',
   },
   textColorInherit: {
@@ -45,28 +47,26 @@ const Navbar = () => {
   };
 
   return (
-    <div className={classes.root}>
-      <AppBar position='fixed' classes={{ colorPrimary: classes.colorPrimary }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label='simple tabs example'
-          classes={{ flexContainer: classes.flexContainer }}
-          variant={matches ? 'fullWidth' : 'standard'}
-        >
-          <Tab
-            label='Builder'
-            {...a11yProps(0)}
-            classes={{ textColorInherit: classes.textColorInherit }}
-          />
-          <Tab
-            label='Orders'
-            {...a11yProps(1)}
-            classes={{ textColorInherit: classes.textColorInherit }}
-          />
-        </Tabs>
-      </AppBar>
-    </div>
+    <AppBar position='fixed' classes={{ colorPrimary: classes.colorPrimary }}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label='simple tabs example'
+        classes={{ flexContainer: classes.flexContainer }}
+        variant={matches ? 'fullWidth' : 'standard'}
+      >
+        <Tab
+          label='Builder'
+          {...a11yProps(0)}
+          classes={{ textColorInherit: classes.textColorInherit }}
+        />
+        <Tab
+          label='Orders'
+          {...a11yProps(1)}
+          classes={{ textColorInherit: classes.textColorInherit }}
+        />
+      </Tabs>
+    </AppBar>
   );
 };
 export default Navbar;

@@ -2,6 +2,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import App from 'next/app';
 import Head from 'next/head';
+import IngredientsContextProvider from '../contexts/IngredientsContext';
 import ModalContextProvider from '../contexts/ModalContext';
 import OrderContextProvider from '../contexts/OrderContext';
 import theme from '../src/theme';
@@ -31,9 +32,11 @@ class MyApp extends App {
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <ModalContextProvider>
-            <OrderContextProvider>
-              <Component {...pageProps}></Component>
-            </OrderContextProvider>
+            <IngredientsContextProvider>
+              <OrderContextProvider>
+                <Component {...pageProps}></Component>
+              </OrderContextProvider>
+            </IngredientsContextProvider>
           </ModalContextProvider>
         </ThemeProvider>
       </>
