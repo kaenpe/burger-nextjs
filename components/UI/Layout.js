@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 const StyledLayout = styled.main`
   height: 100vh;
   display: grid;
-  grid-template-rows: 56px 1fr auto;
+  grid-auto-rows: 56px 1fr auto;
   grid-template-columns: repeat(3, 1fr);
   grid-template-areas: 'header header header' 'burger burger burger' 'controls controls controls';
   z-index: 100;

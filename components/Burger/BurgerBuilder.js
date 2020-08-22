@@ -21,6 +21,10 @@ const StyledModalButtons = styled.div`
   display: flex;
   justify-content: space-evenly;
 `;
+const StyledPriceLabel = styled(StyledLabel)`
+  width: max-content;
+  margin-bottom: 10px;
+`;
 
 const BurgerBuilder = () => {
   const [ingredients, setIngredients] = useState([
@@ -105,7 +109,7 @@ const BurgerBuilder = () => {
         >
           Total price is: {totalPrice}$
         </Typography>
-        <StyledModalButtons className='modal-buttons'>
+        <StyledModalButtons>
           <Button
             style={{ minWidth: '120px', margin: '10px' }}
             variant='contained'
@@ -135,11 +139,11 @@ const BurgerBuilder = () => {
             ing={ing}
           ></BurgerControls>
         ))}
-        <StyledLabel style={{ width: 'max-content', marginBottom: '10px' }}>
+        <StyledPriceLabel>
           <Typography style={{ fontWeight: 'bold' }}>
             Total price: {totalPrice}$
           </Typography>
-        </StyledLabel>
+        </StyledPriceLabel>
         <Button
           color='primary'
           variant='contained'

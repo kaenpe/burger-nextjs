@@ -56,7 +56,7 @@ const Navbar = () => {
           onChange={handleChange}
           aria-label='simple tabs example'
           classes={{ flexContainer: classes.flexContainer }}
-          variant={matches && 'fullWidth'}
+          variant={matches ? 'fullWidth' : 'standard'}
         >
           <Tab
             label='Builder'
