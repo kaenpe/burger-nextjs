@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import BurgerIngredients from './BurgerIngredients';
-const BurgerIngredient = styled.div`
+const StyledIngredient = styled.div`
   width: 100%;
   margin: auto;
   height: 90%;
@@ -13,6 +13,8 @@ const BurgerIngredient = styled.div`
   grid-auto-rows: min-content;
   align-content: baseline;
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   .BreadTop {
     height: 10vh;
     width: 80%;
@@ -71,13 +73,13 @@ const BurgerIngredient = styled.div`
 
 const Burger = ({ ing }) => {
   return (
-    <BurgerIngredient className='burger'>
+    <StyledIngredient className='burger'>
       <div className='BreadTop'></div>
       {ing.map((ing, index) => (
         <BurgerIngredients type={ing.type} key={index}></BurgerIngredients>
       ))}
       <div className='BreadBottom'></div>
-    </BurgerIngredient>
+    </StyledIngredient>
   );
 };
 

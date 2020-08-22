@@ -7,7 +7,7 @@ const StyledBackdrop = styled.div`
   background-color: black;
   z-index: 99;
   position: fixed;
-  opacity: 0.2;
+  opacity: 0.4;
   left: 0;
   top: 0;
 `;
@@ -24,8 +24,8 @@ const StyledModal = styled.div`
   top: 20%;
 
   @media (max-width: 800px) {
-    width: 70%;
-    left: 15%;
+    width: 80%;
+    left: 10%;
   }
 `;
 const Modal = ({ children }) => {

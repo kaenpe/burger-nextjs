@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { ModalContext } from '../../contexts/ModalContext';
 import Modal from '../Modal/Modal';
 import Burger from './Burger';
-import BurgerControls, { Label } from './BurgerControls';
+import BurgerControls, { StyledLabel } from './BurgerControls';
 const ControlsWrapper = styled.div`
   width: 100vw;
   display: flex;
@@ -16,10 +16,12 @@ const ControlsWrapper = styled.div`
 `;
 
 const StyledModalButtons = styled.div`
-  width: 100%;
+  width: 50%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-evenly;
 `;
+
 const BurgerBuilder = () => {
   const [ingredients, setIngredients] = useState([
     { type: 'Meat', price: 1.3, quantity: 1 },
@@ -78,7 +80,8 @@ const BurgerBuilder = () => {
     );
   };
 
-  const { setShowModal } = useContext(ModalContext);
+  const { showModal, setShowModal } = useContext(ModalContext);
+
   return (
     <>
       <Modal>
@@ -95,21 +98,24 @@ const BurgerBuilder = () => {
             </li>
           ))}
         </ul>
-        <Typography gutterBottom={true} align='center'>
-          {' '}
+        <Typography
+          gutterBottom={true}
+          align='center'
+          style={{ fontWeight: 'bold' }}
+        >
           Total price is: {totalPrice}$
-        </Typography>{' '}
+        </Typography>
         <StyledModalButtons className='modal-buttons'>
           <Button
-            style={{ minWidth: '150px' }}
+            style={{ minWidth: '120px', margin: '10px' }}
             variant='contained'
-            color='primary'
             onClick={() => setShowModal(false)}
+            color='secondary'
           >
             Cancel
           </Button>
           <Button
-            style={{ minWidth: '150px' }}
+            style={{ minWidth: '120px', margin: '10px' }}
             variant='contained'
             color='primary'
           >
@@ -122,15 +128,18 @@ const BurgerBuilder = () => {
       <ControlsWrapper>
         {ingredients.map((ing) => (
           <BurgerControls
+            showModal={showModal}
             key={uuid()}
             addIng={addIngredientHandler}
             removeIng={removeIngredientHandler}
             ing={ing}
           ></BurgerControls>
         ))}
-        <Label style={{ width: 'max-content', marginBottom: '10px' }}>
-          Total price: {totalPrice}$
-        </Label>
+        <StyledLabel style={{ width: 'max-content', marginBottom: '10px' }}>
+          <Typography style={{ fontWeight: 'bold' }}>
+            Total price: {totalPrice}$
+          </Typography>
+        </StyledLabel>
         <Button
           color='primary'
           variant='contained'

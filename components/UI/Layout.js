@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Navbar from './Navbar';
-const LayoutWrapper = styled.main`
+const StyledLayout = styled.main`
   height: 100vh;
   display: grid;
   grid-template-rows: 56px 1fr auto;
@@ -11,11 +11,11 @@ const LayoutWrapper = styled.main`
 `;
 const Layout = ({ children }) => {
   return (
-    <LayoutWrapper className='layout-wrapper'>
+    <StyledLayout className='layout-wrapper'>
       <Navbar></Navbar>
 
       {children}
-    </LayoutWrapper>
+    </StyledLayout>
   );
 };
 
