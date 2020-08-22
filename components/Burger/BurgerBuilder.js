@@ -35,7 +35,7 @@ const BurgerBuilder = () => {
   ]);
 
   const [ingredientsOrder, setIngredientsOrder] = useState([
-    { type: 'Meat', id: 0 },
+    { type: 'Meat', id: uuid() },
   ]);
 
   const [totalPrice, setTotalPrice] = useState(1.3);
@@ -49,7 +49,7 @@ const BurgerBuilder = () => {
       )
     );
     setIngredientsOrder((prevState) => [
-      { type: ing, id: prevState.length + 1 },
+      { type: ing, id: uuid() },
       ...prevState,
     ]);
     setTotalPrice(
@@ -128,7 +128,7 @@ const BurgerBuilder = () => {
         </StyledModalButtons>
       </Modal>
 
-      <Burger key={uuid()} ing={ingredientsOrder}></Burger>
+      <Burger ingredients={ingredientsOrder}></Burger>
       <ControlsWrapper>
         {ingredients.map((ing) => (
           <BurgerControls

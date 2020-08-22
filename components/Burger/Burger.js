@@ -1,4 +1,5 @@
 import React from 'react';
+import { animated, useTransition } from 'react-spring';
 import styled from 'styled-components';
 import BurgerIngredients from './BurgerIngredients';
 const StyledIngredient = styled.div`
@@ -71,12 +72,26 @@ const StyledIngredient = styled.div`
   }
 `;
 
-const Burger = ({ ing }) => {
+const Burger = ({ ingredients }) => {
+  const transitions = useTransition(ingredients, (ing) => ing.id, {
+    from: {
+      transition: 'all 200ms ease-out',
+      transform: 'translateX(-100vw)',
+      maxHeight: '0.1px',
+    },
+    enter: {
+      transform: 'translateX(0)',
+      maxHeight: '52px',
+    },
+    leave: { transform: 'translateX(-100vw)', maxHeight: '0.1px' },
+  });
   return (
     <StyledIngredient className='burger'>
       <div className='BreadTop'></div>
-      {ing.map((ing, index) => (
-        <BurgerIngredients type={ing.type} key={index}></BurgerIngredients>
+      {transitions.map(({ item, props, key }) => (
+        <animated.div key={key} style={props}>
+          <BurgerIngredients type={item.type}></BurgerIngredients>
+        </animated.div>
       ))}
       <div className='BreadBottom'></div>
     </StyledIngredient>
