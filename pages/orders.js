@@ -1,18 +1,12 @@
-import React, { useEffect } from 'react';
-import Burger from '../components/Burger/Burger';
+import React from 'react';
+import Orders from '../components/Orders/Orders';
 import OrdersLayout from '../components/UI/OrdersLayout';
 import { projectFirestore } from '../firebase/config';
 
 const orders = ({ orders }) => {
-  useEffect(() => {
-    console.log(orders);
-  }, []);
-
   return (
     <OrdersLayout>
-      {orders.map((ing) => {
-        return <Burger ing={ing.ingredients}></Burger>;
-      })}
+      <Orders orders={orders}></Orders>
     </OrdersLayout>
   );
 };

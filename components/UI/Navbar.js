@@ -59,7 +59,6 @@ const Navbar = ({ val }) => {
       >
         <Link href='/' passHref>
           <Tab
-            href='/'
             label='Builder'
             {...a11yProps(0)}
             classes={{ textColorInherit: classes.textColorInherit }}
@@ -67,7 +66,6 @@ const Navbar = ({ val }) => {
         </Link>
         <Link href='/orders/' passHref>
           <Tab
-            href='/orders/'
             label='Orders'
             {...a11yProps(1)}
             classes={{ textColorInherit: classes.textColorInherit }}
