@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useEffect } from 'react';
 
 function a11yProps(index) {
   return {
@@ -34,39 +35,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = () => {
+const Navbar = ({ val }) => {
   const matches = useMediaQuery('(max-width:600px)');
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(null);
+  useEffect(() => {
+    setValue(val);
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <div style={{ height: '50px' }}>
-      <AppBar position='fixed' classes={{ colorPrimary: classes.colorPrimary }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label='simple tabs example'
-          classes={{ flexContainer: classes.flexContainer }}
-          variant={matches ? 'fullWidth' : 'standard'}
-        >
-          <Tab
-            label='Builder'
-            {...a11yProps(0)}
-            classes={{ textColorInherit: classes.textColorInherit }}
-          />
+    <AppBar position='fixed' classes={{ colorPrimary: classes.colorPrimary }}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label='simple tabs example'
+        classes={{ flexContainer: classes.flexContainer }}
+        variant={matches ? 'fullWidth' : 'standard'}
+      >
+        <Tab
+          href='/'
+          label='Builder'
+          {...a11yProps(0)}
+          classes={{ textColorInherit: classes.textColorInherit }}
+        />
 
-          <Tab
-            label='Orders'
-            {...a11yProps(1)}
-            classes={{ textColorInherit: classes.textColorInherit }}
-          />
-        </Tabs>
-      </AppBar>
-    </div>
+        <Tab
+          href='/orders/'
+          label='Orders'
+          {...a11yProps(1)}
+          classes={{ textColorInherit: classes.textColorInherit }}
+        />
+      </Tabs>
+    </AppBar>
   );
 };
 export default Navbar;

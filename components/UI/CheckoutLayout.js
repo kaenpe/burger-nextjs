@@ -8,10 +8,13 @@ const StyledCheckoutLayout = styled.main`
 `;
 const CheckoutLayout = ({ children }) => {
   return (
-    <StyledCheckoutLayout>
-      <Navbar></Navbar>
-      {children}
-    </StyledCheckoutLayout>
+    <>
+      {' '}
+      <StyledCheckoutLayout>
+        <Navbar val={0}></Navbar>
+        {children}
+      </StyledCheckoutLayout>
+    </>
   );
 };
 

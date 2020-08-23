@@ -29,7 +29,7 @@ const Checkout = () => {
         gridRow: '2',
       }}
     >
-      <Burger ing={ingredientsOrder}></Burger>
+      <Burger ing={ingredientsOrder} isIndex></Burger>
 
       <Container style={{ textAlign: 'center', padding: '20px' }}>
         <Typography variant={'h3'} align='center' color='primary' gutterBottom>

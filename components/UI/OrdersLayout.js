@@ -5,7 +5,8 @@ const StyledOrderLayout = styled.main`
   grid-auto-flow: dense;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 5%;
+  grid-gap: 3%;
 
   @media (min-width: 600px) {
     grid-template-columns: repeat(2, 1fr);
@@ -17,8 +18,8 @@ const StyledOrderLayout = styled.main`
 const IndexLayout = ({ children }) => {
   return (
     <>
-      <Navbar></Navbar>
       <StyledOrderLayout className='layout-wrapper'>
+        <Navbar val={1}></Navbar>
         {children}
       </StyledOrderLayout>
     </>

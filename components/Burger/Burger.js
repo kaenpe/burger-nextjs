@@ -4,7 +4,8 @@ import BurgerIngredients from './BurgerIngredients';
 const StyledIngredient = styled.div`
   width: 100%;
   margin: auto;
-  height: ${({ isIndex }) => (isIndex ? '90%' : '300px')};
+  padding-top: 50px;
+  height: ${({ isIndex }) => (isIndex ? '100%' : '300px')};
   text-align: center;
   font-weight: bold;
   font-size: 1.2rem;
@@ -12,7 +13,7 @@ const StyledIngredient = styled.div`
   grid-row: ${({ isIndex }) => (isIndex ? '2' : 'initial')};
   display: grid;
   grid-auto-rows: min-content;
-  align-content: baseline;
+  align-content: 'baseline';
   align-self: center;
   overflow-y: auto;
   scrollbar-width: none;
