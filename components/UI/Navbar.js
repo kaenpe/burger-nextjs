@@ -4,7 +4,7 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function a11yProps(index) {
   return {
@@ -41,6 +41,9 @@ const Navbar = () => {
   const classes = useStyles();
   const router = useRouter();
   const [value, setValue] = useState(router.pathname === '/' ? 0 : 1);
+  useEffect(() => {
+    setValue(router.pathname === '/' ? 0 : 1);
+  }, [router.pathname]);
   const handleChange = (e, newValue) => {
     setValue(newValue);
   };
