@@ -57,7 +57,7 @@ const Navbar = ({ val }) => {
         classes={{ flexContainer: classes.flexContainer }}
         variant={matches ? 'fullWidth' : 'standard'}
       >
-        <Link href='/'>
+        <Link href='/' passHref>
           <Tab
             href='/'
             label='Builder'
@@ -65,7 +65,7 @@ const Navbar = ({ val }) => {
             classes={{ textColorInherit: classes.textColorInherit }}
           />
         </Link>
-        <Link href='/orders/'>
+        <Link href='/orders/' passHref>
           <Tab
             href='/orders/'
             label='Orders'
