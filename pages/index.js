@@ -3,7 +3,7 @@ import BurgerBuilder from '../components/Burger/BurgerBuilder';
 import IndexLayout from '../components/UI/IndexLayout';
 import Navbar from '../components/UI/Navbar';
 
-export default function Home() {
+export default function Home({ orders }) {
   return (
     <>
       <Head>
@@ -11,8 +11,25 @@ export default function Home() {
       </Head>
       <Navbar></Navbar>
       <IndexLayout>
-        <BurgerBuilder></BurgerBuilder>
+        <BurgerBuilder orders={orders}></BurgerBuilder>
       </IndexLayout>
     </>
   );
 }
+// export const getStaticProps = async () => {
+//   const orders = 'dog';
+//   await db
+//     .collection('orders')
+//     .get()
+//     .then((snapshot) => {
+//       snapshot.forEach((doc) => {
+//         return { ...doc.data() };
+//       });
+//     });
+
+//   return {
+//     props: {
+//       orders,
+//     },
+//   };
+// };

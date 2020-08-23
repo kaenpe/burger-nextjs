@@ -5,7 +5,6 @@ import uuid from 'react-uuid';
 import styled from 'styled-components';
 import { IngredientsContext } from '../../contexts/IngredientsContext';
 import { ModalContext } from '../../contexts/ModalContext';
-import { db } from '../../firebase/config';
 import Modal from '../Modal/Modal';
 import Burger from './Burger';
 import BurgerControls, { StyledLabel } from './BurgerControls';
@@ -29,7 +28,7 @@ const StyledPriceLabel = styled(StyledLabel)`
   margin-bottom: 10px;
 `;
 
-const BurgerBuilder = ({}) => {
+const BurgerBuilder = ({ orders }) => {
   const [totalPrice, setTotalPrice] = useState(1.3);
   const { showModal, setShowModal } = useContext(ModalContext);
   const {
@@ -39,19 +38,21 @@ const BurgerBuilder = ({}) => {
     setIngredientsOrder,
   } = useContext(IngredientsContext);
   useEffect(() => {
+    console.log(orders);
     return () => {
       setShowModal(false);
     };
   }, []);
+
   useEffect(() => {
-    db.collection('orders')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          console.log(`${doc.id} => ${doc.data()}`);
-        });
-      });
-  }, []);
+    setTotalPrice(
+      ingredients
+        .reduce((sum, ingredient) => {
+          return (sum += ingredient.price * ingredient.quantity);
+        }, 0)
+        .toFixed(2)
+    );
+  }, [ingredients]);
   const addIngredientHandler = (ing) => {
     setIngredients((prevState) =>
       prevState.map((ingredient) =>
@@ -64,13 +65,6 @@ const BurgerBuilder = ({}) => {
       { type: ing, id: uuid() },
       ...prevState,
     ]);
-    setTotalPrice(
-      ingredients
-        .reduce((sum, ingredient) => {
-          return (sum += ingredient.price * ingredient.quantity);
-        }, 0)
-        .toFixed(2)
-    );
   };
   const removeIngredientHandler = (ing) => {
     setIngredients((prevState) =>
@@ -87,13 +81,6 @@ const BurgerBuilder = ({}) => {
       );
       return prevState.filter((ingredient, index) => index !== firstMatch);
     });
-    setTotalPrice(
-      ingredients
-        .reduce((sum, ingredient) => {
-          return (sum += ingredient.price * ingredient.quantity);
-        }, 0)
-        .toFixed(2)
-    );
   };
 
   return (
@@ -168,17 +155,5 @@ const BurgerBuilder = ({}) => {
     </>
   );
 };
-// export const getStaticProps = async () => {
-//   const document = await projectFirestore
-//     .collection('orders')
-//     .doc('wgfvrXcGFUh3dVmDmMvh')
-//     .get()
-//     .then((doc) => doc.data());
-//   const orders = await document;
-//   return {
-//     props: {
-//       orders,
-//     },
-//   };
-// };
+
 export default BurgerBuilder;
