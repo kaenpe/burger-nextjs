@@ -5,6 +5,7 @@ import uuid from 'react-uuid';
 import styled from 'styled-components';
 import { IngredientsContext } from '../../contexts/IngredientsContext';
 import { ModalContext } from '../../contexts/ModalContext';
+import { db } from '../../firebase/config';
 import Modal from '../Modal/Modal';
 import Burger from './Burger';
 import BurgerControls, { StyledLabel } from './BurgerControls';
@@ -28,7 +29,7 @@ const StyledPriceLabel = styled(StyledLabel)`
   margin-bottom: 10px;
 `;
 
-const BurgerBuilder = () => {
+const BurgerBuilder = ({}) => {
   const [totalPrice, setTotalPrice] = useState(1.3);
   const { showModal, setShowModal } = useContext(ModalContext);
   const {
@@ -41,6 +42,15 @@ const BurgerBuilder = () => {
     return () => {
       setShowModal(false);
     };
+  }, []);
+  useEffect(() => {
+    db.collection('orders')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          console.log(`${doc.id} => ${doc.data()}`);
+        });
+      });
   }, []);
   const addIngredientHandler = (ing) => {
     setIngredients((prevState) =>
@@ -158,5 +168,17 @@ const BurgerBuilder = () => {
     </>
   );
 };
-
+// export const getStaticProps = async () => {
+//   const document = await projectFirestore
+//     .collection('orders')
+//     .doc('wgfvrXcGFUh3dVmDmMvh')
+//     .get()
+//     .then((doc) => doc.data());
+//   const orders = await document;
+//   return {
+//     props: {
+//       orders,
+//     },
+//   };
+// };
 export default BurgerBuilder;

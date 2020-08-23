@@ -14,6 +14,7 @@
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "axios": "^0.20.0",
+    "firebase": "^7.19.0",
     "formik": "^2.1.5",
     "framer-motion": "^2.4.3-beta.2",
     "next": "9.5.2",
