@@ -9,7 +9,7 @@ const StyledIndexLayout = styled.main`
 const IndexLayout = ({ children }) => {
   return (
     <StyledIndexLayout className='layout-wrapper'>
-      <Navbar val={0}></Navbar>
+      <Navbar></Navbar>
       {children}
     </StyledIndexLayout>
   );

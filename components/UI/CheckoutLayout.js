@@ -11,7 +11,7 @@ const CheckoutLayout = ({ children }) => {
     <>
       {' '}
       <StyledCheckoutLayout>
-        <Navbar val={0}></Navbar>
+        <Navbar></Navbar>
         {children}
       </StyledCheckoutLayout>
     </>

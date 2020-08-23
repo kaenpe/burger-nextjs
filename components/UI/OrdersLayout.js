@@ -19,7 +19,7 @@ const IndexLayout = ({ children }) => {
   return (
     <>
       <StyledOrderLayout className='layout-wrapper'>
-        <Navbar val={1}></Navbar>
+        <Navbar></Navbar>
         {children}
       </StyledOrderLayout>
     </>

@@ -4,7 +4,6 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 function a11yProps(index) {
   return {
@@ -40,14 +39,18 @@ const Navbar = () => {
   const matches = useMediaQuery('(max-width:600px)');
   const classes = useStyles();
   const router = useRouter();
-  const [value, setValue] = React.useState(router.pathname === '/' ? 1 : 0);
-  useEffect(() => {
-    setValue((prevValue) => (prevValue === 0 ? 1 : 0));
-  }, []);
+  const [value, setValue] = React.useState(
+    router.pathname === ('/' || '/checkout') ? 0 : 1
+  );
+  const handleChange = (e) => {
+    setValue(value === 0 ? 1 : 0);
+  };
+
   return (
     <AppBar position='fixed' classes={{ colorPrimary: classes.colorPrimary }}>
       <Tabs
         value={value}
+        onChange={handleChange}
         aria-label='simple tabs example'
         classes={{ flexContainer: classes.flexContainer }}
         variant={matches ? 'fullWidth' : 'standard'}
@@ -60,7 +63,7 @@ const Navbar = () => {
         />
 
         <Tab
-          onClick={() => router.push('/orders')}
+          onClick={() => router.replace('/orders')}
           label='Orders'
           {...a11yProps(1)}
           classes={{ textColorInherit: classes.textColorInherit }}
