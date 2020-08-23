@@ -28,7 +28,7 @@ const StyledPriceLabel = styled(StyledLabel)`
   margin-bottom: 10px;
 `;
 
-const BurgerBuilder = ({ orders }) => {
+const BurgerBuilder = () => {
   const [totalPrice, setTotalPrice] = useState(1.3);
   const { showModal, setShowModal } = useContext(ModalContext);
   const {
@@ -38,7 +38,6 @@ const BurgerBuilder = ({ orders }) => {
     setIngredientsOrder,
   } = useContext(IngredientsContext);
   useEffect(() => {
-    console.log(orders);
     return () => {
       setShowModal(false);
     };

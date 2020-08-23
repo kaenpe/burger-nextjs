@@ -3,9 +3,19 @@ import Link from 'next/link';
 import React, { useContext } from 'react';
 import { IngredientsContext } from '../../contexts/IngredientsContext';
 import Burger from '../Burger/Burger';
+import { useFirestore } from '../hooks/useFirestore';
 
 const Checkout = () => {
-  const { ingredientsOrder } = useContext(IngredientsContext);
+  const { ingredientsOrder, ingredients } = useContext(IngredientsContext);
+  const order = () => {
+    const ingredientsList = {
+      list: ingredientsOrder.map((ing) => ing.type),
+      price: ingredients.reduce((acc, ing) => {
+        return acc + ing.quantity * ing.price;
+      }, 0),
+    };
+    useFirestore('orders', ingredientsList);
+  };
   return (
     <Container
       style={{
@@ -33,14 +43,17 @@ const Checkout = () => {
             Cancel
           </Button>
         </Link>
-        <Button
-          style={{ minWidth: '120px', margin: '10px' }}
-          variant='contained'
-          color='Primary'
-        >
-          {' '}
-          Continue
-        </Button>
+        <Link href='/orders/'>
+          <Button
+            style={{ minWidth: '120px', margin: '10px' }}
+            variant='contained'
+            color='primary'
+            onClick={() => order()}
+          >
+            {' '}
+            Continue
+          </Button>
+        </Link>
       </Container>
     </Container>
   );

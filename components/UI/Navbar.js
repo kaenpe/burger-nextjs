@@ -60,6 +60,7 @@ const Navbar = () => {
           {...a11yProps(0)}
           classes={{ textColorInherit: classes.textColorInherit }}
         />
+
         <Tab
           label='Orders'
           {...a11yProps(1)}
