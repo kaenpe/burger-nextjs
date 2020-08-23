@@ -9,7 +9,9 @@ const Checkout = () => {
   const { ingredientsOrder, ingredients } = useContext(IngredientsContext);
   const order = () => {
     const ingredientsList = {
-      list: ingredientsOrder.map((ing) => ing.type),
+      list: ingredientsOrder.map((ing) => {
+        return { type: ing.type, id: ing.id };
+      }),
       price: ingredients.reduce((acc, ing) => {
         return acc + ing.quantity * ing.price;
       }, 0),

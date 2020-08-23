@@ -3,9 +3,7 @@ import Navbar from './Navbar';
 const StyledIndexLayout = styled.main`
   height: 100vh;
   display: grid;
-  grid-auto-rows: 56px 1fr auto;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-areas: 'header header header' 'burger burger burger' 'controls controls controls';
+  grid-template-rows: 56px 1fr auto;
   z-index: 100;
 `;
 const IndexLayout = ({ children }) => {

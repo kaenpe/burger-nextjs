@@ -126,7 +126,7 @@ const BurgerBuilder = () => {
         </StyledModalButtons>
       </Modal>
 
-      <Burger ing={ingredientsOrder}></Burger>
+      <Burger ing={ingredientsOrder} isIndex></Burger>
       <ControlsWrapper>
         {ingredients.map((ing) => (
           <BurgerControls

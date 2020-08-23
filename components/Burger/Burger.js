@@ -4,14 +4,16 @@ import BurgerIngredients from './BurgerIngredients';
 const StyledIngredient = styled.div`
   width: 100%;
   margin: auto;
-  height: 90%;
+  height: ${({ isIndex }) => (isIndex ? '90%' : '300px')};
   text-align: center;
   font-weight: bold;
   font-size: 1.2rem;
-  grid-area: burger;
+  grid-column: ${({ isIndex }) => (isIndex ? '2' : 'initial')};
+  grid-row: ${({ isIndex }) => (isIndex ? '2' : 'initial')};
   display: grid;
   grid-auto-rows: min-content;
   align-content: baseline;
+  align-self: center;
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -21,7 +23,7 @@ const StyledIngredient = styled.div`
     background: linear-gradient(#9d4410, #ad5214);
     border-radius: 50% 50% 0 0;
     box-shadow: inset -15px 0 #79370b;
-    margin: 2% auto;
+    margin: 1% auto;
     position: relative;
   }
   .BreadBottom {
@@ -30,13 +32,13 @@ const StyledIngredient = styled.div`
     background: linear-gradient(#9d4410, #ad5214);
     border-radius: 0 0 30px 30px;
     box-shadow: inset -15px 0 #79370b;
-    margin: 2% auto;
+    margin: 1% auto;
   }
   .Meat {
     width: 80%;
     height: 3vh;
     background: linear-gradient(#7f3608, #702e05);
-    margin: 2% auto;
+    margin: 1% auto;
     border-radius: 15px;
   }
 
@@ -63,7 +65,7 @@ const StyledIngredient = styled.div`
     margin: 1% auto;
   }
   @media (min-width: 800px) {
-    width: 500px;
+    width: ${({ isIndex }) => (isIndex ? '500px' : '300px')};
   }
 
   @media (max-width: 750px) {
@@ -71,9 +73,9 @@ const StyledIngredient = styled.div`
   }
 `;
 
-const Burger = ({ ing }) => {
+const Burger = ({ ing, isIndex }) => {
   return (
-    <StyledIngredient className='burger'>
+    <StyledIngredient isIndex={isIndex} className='burger'>
       <div className='BreadTop'></div>
       <AnimatePresence>
         {ing.map(({ type, id }) => (

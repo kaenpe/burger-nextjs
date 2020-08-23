@@ -1,6 +1,6 @@
-import { Container, Typography } from '@material-ui/core';
 import React, { useEffect } from 'react';
-import CheckoutLayout from '../components/UI/CheckoutLayout';
+import Burger from '../components/Burger/Burger';
+import OrdersLayout from '../components/UI/OrdersLayout';
 import { projectFirestore } from '../firebase/config';
 
 const orders = ({ orders }) => {
@@ -9,15 +9,11 @@ const orders = ({ orders }) => {
   }, []);
 
   return (
-    <CheckoutLayout>
-      <Container style={{ gridRow: '2' }}>
-        {orders.map((ing) => (
-          <Typography variant='h3'>
-            {ing.ingredients.map} {ing.price}
-          </Typography>
-        ))}
-      </Container>
-    </CheckoutLayout>
+    <OrdersLayout>
+      {orders.map((ing) => {
+        return <Burger ing={ing.ingredients}></Burger>;
+      })}
+    </OrdersLayout>
   );
 };
 export const getStaticProps = async () => {

@@ -7,6 +7,7 @@ const StyledControls = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  grid-row: 3;
 `;
 export const StyledLabel = styled.label`
   margin: 5px;
