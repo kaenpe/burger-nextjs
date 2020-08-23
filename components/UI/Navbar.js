@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Link from 'next/link';
 import { useEffect } from 'react';
 
 function a11yProps(index) {
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = ({ val }) => {
   const matches = useMediaQuery('(max-width:600px)');
   const classes = useStyles();
-  const [value, setValue] = React.useState(null);
+  const [value, setValue] = React.useState(0);
   useEffect(() => {
     setValue(val);
   }, []);
@@ -56,19 +57,22 @@ const Navbar = ({ val }) => {
         classes={{ flexContainer: classes.flexContainer }}
         variant={matches ? 'fullWidth' : 'standard'}
       >
-        <Tab
-          href='/'
-          label='Builder'
-          {...a11yProps(0)}
-          classes={{ textColorInherit: classes.textColorInherit }}
-        />
-
-        <Tab
-          href='/orders/'
-          label='Orders'
-          {...a11yProps(1)}
-          classes={{ textColorInherit: classes.textColorInherit }}
-        />
+        <Link href='/'>
+          <Tab
+            href='/'
+            label='Builder'
+            {...a11yProps(0)}
+            classes={{ textColorInherit: classes.textColorInherit }}
+          />
+        </Link>
+        <Link href='/orders/'>
+          <Tab
+            href='/orders/'
+            label='Orders'
+            {...a11yProps(1)}
+            classes={{ textColorInherit: classes.textColorInherit }}
+          />
+        </Link>
       </Tabs>
     </AppBar>
   );
