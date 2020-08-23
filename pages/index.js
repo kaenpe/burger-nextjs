@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import BurgerBuilder from '../components/Burger/BurgerBuilder';
-import IndexLayout from '../components/UI/IndexLayout';
 
 export default function Home() {
   return (
@@ -8,9 +7,7 @@ export default function Home() {
       <Head>
         <title>Burger </title>
       </Head>
-      <IndexLayout>
-        <BurgerBuilder></BurgerBuilder>
-      </IndexLayout>
+      <BurgerBuilder></BurgerBuilder>
     </>
   );
 }

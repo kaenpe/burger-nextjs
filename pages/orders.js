@@ -1,14 +1,9 @@
 import React from 'react';
 import Orders from '../components/Orders/Orders';
-import OrdersLayout from '../components/UI/OrdersLayout';
 import { projectFirestore } from '../firebase/config';
 
 const orders = ({ orders }) => {
-  return (
-    <OrdersLayout>
-      <Orders orders={orders}></Orders>
-    </OrdersLayout>
-  );
+  return <Orders orders={orders}></Orders>;
 };
 export const getStaticProps = async () => {
   const orders = [];

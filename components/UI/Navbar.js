@@ -4,6 +4,7 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 function a11yProps(index) {
   return {
@@ -39,13 +40,10 @@ const Navbar = () => {
   const matches = useMediaQuery('(max-width:600px)');
   const classes = useStyles();
   const router = useRouter();
-  const [value, setValue] = React.useState(
-    router.pathname === ('/' || '/checkout') ? 0 : 1
-  );
-  const handleChange = (e) => {
-    setValue(value === 0 ? 1 : 0);
+  const [value, setValue] = useState(router.pathname === '/' ? 0 : 1);
+  const handleChange = (e, newValue) => {
+    setValue(newValue);
   };
-
   return (
     <AppBar position='fixed' classes={{ colorPrimary: classes.colorPrimary }}>
       <Tabs
