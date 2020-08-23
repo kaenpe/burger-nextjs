@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 function a11yProps(index) {
@@ -36,41 +36,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = ({ val }) => {
+const Navbar = () => {
   const matches = useMediaQuery('(max-width:600px)');
   const classes = useStyles();
-  const [value, setValue] = React.useState(val === 1 ? 0 : 1);
+  const router = useRouter();
+  const [value, setValue] = React.useState(router.pathname === '/' ? 1 : 0);
   useEffect(() => {
-    setValue(val);
+    setValue((prevValue) => (prevValue === 0 ? 1 : 0));
   }, []);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
   return (
     <AppBar position='fixed' classes={{ colorPrimary: classes.colorPrimary }}>
       <Tabs
         value={value}
-        onChange={handleChange}
         aria-label='simple tabs example'
         classes={{ flexContainer: classes.flexContainer }}
         variant={matches ? 'fullWidth' : 'standard'}
       >
-        <Link href='/' passHref>
-          <Tab
-            label='Builder'
-            {...a11yProps(0)}
-            classes={{ textColorInherit: classes.textColorInherit }}
-          />
-        </Link>
-        <Link href='/orders/' passHref>
-          <Tab
-            label='Orders'
-            {...a11yProps(1)}
-            classes={{ textColorInherit: classes.textColorInherit }}
-          />
-        </Link>
+        <Tab
+          onClick={() => router.replace('/')}
+          label='Builder'
+          {...a11yProps(0)}
+          classes={{ textColorInherit: classes.textColorInherit }}
+        />
+
+        <Tab
+          onClick={() => router.push('/orders')}
+          label='Orders'
+          {...a11yProps(1)}
+          classes={{ textColorInherit: classes.textColorInherit }}
+        />
       </Tabs>
     </AppBar>
   );
