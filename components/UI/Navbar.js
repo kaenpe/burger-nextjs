@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = ({ val }) => {
   const matches = useMediaQuery('(max-width:600px)');
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(val === 1 ? 0 : 1);
   useEffect(() => {
     setValue(val);
   }, []);
