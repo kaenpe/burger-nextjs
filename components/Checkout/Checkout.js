@@ -1,23 +1,11 @@
 import { Button, Container, Typography } from '@material-ui/core';
 import Link from 'next/link';
 import React, { useContext } from 'react';
-import { IngredientsContext } from '../../contexts/IngredientsContext';
 import Burger from '../Burger/Burger';
-import { useFirestore } from '../hooks/useFirestore';
+import { IngredientsContext } from '../../contexts/IngredientsContext';
 
 const Checkout = () => {
-  const { ingredientsOrder, ingredients } = useContext(IngredientsContext);
-  const order = () => {
-    const ingredientsList = {
-      list: ingredientsOrder.map((ing) => {
-        return { type: ing.type, id: ing.id };
-      }),
-      price: ingredients.reduce((acc, ing) => {
-        return acc + ing.quantity * ing.price;
-      }, 0),
-    };
-    useFirestore('orders', ingredientsList);
-  };
+  const { ingredientsOrder } = useContext(IngredientsContext);
   return (
     <Container
       style={{
@@ -45,14 +33,12 @@ const Checkout = () => {
             Cancel
           </Button>
         </Link>
-        <Link href='/orders/'>
+        <Link href='/contact/'>
           <Button
             style={{ minWidth: '120px', margin: '10px' }}
             variant='contained'
             color='primary'
-            onClick={() => order()}
           >
-            {' '}
             Continue
           </Button>
         </Link>

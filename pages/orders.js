@@ -9,10 +9,17 @@ export const getStaticProps = async () => {
   const orders = [];
   await projectFirestore
     .collection('orders')
+    .orderBy('createdAt', 'desc')
     .get()
     .then((snapshot) => {
       snapshot.forEach((doc) => {
-        orders.push({ ...doc.data() });
+        orders.push({
+          ...doc.data(),
+          id: doc.id,
+          createdAt: new Date(
+            doc.data().createdAt.seconds * 1000
+          ).toLocaleDateString('en-US'),
+        });
       });
     });
 

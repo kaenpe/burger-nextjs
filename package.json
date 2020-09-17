@@ -16,11 +16,13 @@
     "axios": "^0.20.0",
     "firebase": "^7.19.0",
     "formik": "^2.1.5",
+    "formik-material-ui": "^3.0.0",
     "framer-motion": "^2.4.3-beta.2",
     "next": "9.5.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-uuid": "^1.0.2",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "yup": "^0.29.3"
   }
 }

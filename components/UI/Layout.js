@@ -4,7 +4,8 @@ const StyledLayout = styled.main`
   height: ${({ path }) =>
     path === '/checkout' || path === '/' ? '100vh' : 'auto'};
   display: grid;
-  grid-template-rows: ${({ path }) => (path === '/' ? '56px 1fr auto' : null)};
+  grid-template-rows: ${({ path }) =>
+    path === '/' ? '56px 1fr auto' : path === '/contact' ? '56px 1fr' : null};
   z-index: 100;
   grid-gap: ${({ path }) => (path === '/orders' ? '5%' : null)};
   padding: ${({ path }) => (path === '/orders' ? '3%' : null)};
