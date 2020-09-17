@@ -22,7 +22,7 @@ const StyledForm = styled(Form)`
 const Contact = () => {
   const { ingredientsOrder, ingredients } = useContext(IngredientsContext);
   const router = useRouter();
-  const order = () => {
+  const order = (contact) => {
     const ingredientsList = {
       list: ingredientsOrder.map((ing) => {
         return { type: ing.type, id: ing.id };
@@ -31,7 +31,7 @@ const Contact = () => {
         return acc + ing.quantity * ing.price;
       }, 0),
     };
-    useFirestore('orders', ingredientsList);
+    useFirestore('orders', ingredientsList, contact);
   };
 
   let schema = yup.object().shape({
@@ -72,14 +72,14 @@ const Contact = () => {
         }}
         validationSchema={schema}
         onSubmit={(values, { setSubmitting }) => {
-          order();
+          order(values);
           setTimeout(() => {
             setSubmitting(false);
             router.replace('/');
           }, 500);
         }}
       >
-        {({ isSubmitting, errors, touched }) => (
+        {({ isSubmitting }) => (
           <StyledForm>
             <Field
               component={TextField}
