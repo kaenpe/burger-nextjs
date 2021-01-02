@@ -5,7 +5,7 @@ interface AuthProps {}
 export const Auth: React.FC<AuthProps> = ({}) => {
   return (
     <>
-      <p>cock</p>
+      <p>f</p>
     </>
   );
 };
