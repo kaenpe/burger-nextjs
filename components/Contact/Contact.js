@@ -7,6 +7,7 @@ import { Button } from '@material-ui/core';
 import { IngredientsContext } from '../../contexts/IngredientsContext';
 import { useFirestore } from '../hooks/useFirestore';
 import { useRouter } from 'next/router';
+import uuid from 'react-uuid';
 const FormWrapper = styled.div`
   grid-row: 2;
   display: flex;
@@ -20,7 +21,12 @@ const StyledForm = styled(Form)`
   width: 50vw;
 `;
 const Contact = () => {
-  const { ingredientsOrder, ingredients } = useContext(IngredientsContext);
+  const {
+    ingredientsOrder,
+    ingredients,
+    setIngredients,
+    setIngredientsOrder,
+  } = useContext(IngredientsContext);
   const router = useRouter();
   const order = (contact) => {
     const ingredientsList = {
@@ -73,6 +79,13 @@ const Contact = () => {
         validationSchema={schema}
         onSubmit={(values, { setSubmitting }) => {
           order(values);
+          setIngredients([
+            { type: 'Meat', price: 1.3, quantity: 1 },
+            { type: 'Cheese', price: 0.4, quantity: 0 },
+            { type: 'Salad', price: 0.5, quantity: 0 },
+            { type: 'Bacon', price: 0.7, quantity: 0 },
+          ]);
+          setIngredientsOrder([{ type: 'Meat', id: uuid() }]);
           setTimeout(() => {
             setSubmitting(false);
             router.replace('/');

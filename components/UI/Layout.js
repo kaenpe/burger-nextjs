@@ -18,7 +18,7 @@ const StyledLayout = styled.main`
   }
   @media (min-width: 900px) {
     grid-template-columns: ${({ path }) =>
-      path === '/orders' ? 'repeat(5,1fr)' : null};
+      path === '/orders' ? 'repeat(4,1fr)' : null};
   }
 `;
 const Layout = ({ children }) => {
