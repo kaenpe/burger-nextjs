@@ -5,8 +5,10 @@ import Tabs from '@material-ui/core/Tabs';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../contexts/AuthContext';
+import { IngredientsContext } from '../../contexts/IngredientsContext';
 import { useEffect, useState, useContext } from 'react';
 import { projectAuth } from '../../firebase/config';
+import uuid from 'react-uuid';
 
 function a11yProps(index) {
   return {
@@ -42,6 +44,12 @@ const Navbar = () => {
   const matches = useMediaQuery('(max-width:600px)');
   const classes = useStyles();
   const { auth } = useContext(AuthContext);
+  const {
+    ingredients,
+    setIngredients,
+    ingredientsOrder,
+    setIngredientsOrder,
+  } = useContext(IngredientsContext);
   const router = useRouter();
   const [value, setValue] = useState(
     router.pathname === '/' ? 0 : router.pathname === '/orders' ? 1 : 2
@@ -76,10 +84,18 @@ const Navbar = () => {
           {...a11yProps(1)}
           classes={{ textColorInherit: classes.textColorInherit }}
         />
+
         <Tab
           onClick={() => {
             if (auth) {
               projectAuth.signOut();
+              setIngredients([
+                { type: 'Meat', price: 1.3, quantity: 1 },
+                { type: 'Cheese', price: 0.4, quantity: 0 },
+                { type: 'Salad', price: 0.5, quantity: 0 },
+                { type: 'Bacon', price: 0.7, quantity: 0 },
+              ]);
+              setIngredientsOrder([{ type: 'Meat', id: uuid() }]);
               router.replace('/login');
             } else {
               router.replace('/login');

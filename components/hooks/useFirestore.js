@@ -1,8 +1,5 @@
 import { projectFirestore, timestamp } from '../../firebase/config';
-import { AuthContext } from '../../contexts/AuthContext';
-import { useContext } from 'react';
 export const useFirestore = (collection, ingredients, contact) => {
-  const { auth } = useContext(AuthContext);
   projectFirestore
     .collection(collection)
     .add({
@@ -11,7 +8,7 @@ export const useFirestore = (collection, ingredients, contact) => {
       createdAt: timestamp(),
       contact: {
         name: contact.name,
-        email: auth,
+        email: contact.email,
         city: contact.city,
         street: contact.street,
         zipcode: contact.zipcode,

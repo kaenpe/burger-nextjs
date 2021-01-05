@@ -103,13 +103,6 @@ const Contact = () => {
               name='name'
               label=' Name'
             />
-            <Field
-              component={TextField}
-              type='email'
-              name='email'
-              label='email'
-              placeholder={auth}
-            />
             <Field component={TextField} type='City' name='city' label='City' />
 
             <Field

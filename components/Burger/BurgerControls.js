@@ -1,5 +1,7 @@
 import { Button, Typography } from '@material-ui/core';
+import { useContext } from 'react';
 import styled from 'styled-components';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const StyledControls = styled.div`
   padding: 5px;
@@ -22,6 +24,7 @@ const BurgerControls = ({
   ing: { type, quantity, price },
   showModal,
 }) => {
+  const { auth } = useContext(AuthContext);
   return (
     <StyledControls>
       <StyledLabel>
@@ -33,7 +36,7 @@ const BurgerControls = ({
       <Button
         color='secondary'
         variant='contained'
-        disabled={quantity === 0 || showModal}
+        disabled={quantity === 0 || showModal || !auth}
         onClick={() => removeIng(type)}
         className='remove-button'
         style={{ width: '5rem', margin: '10px' }}
@@ -46,7 +49,7 @@ const BurgerControls = ({
         style={{ width: '5rem', margin: '10px' }}
         onClick={() => addIng(type)}
         className='add-button'
-        disabled={showModal}
+        disabled={showModal || !auth}
       >
         <Typography style={{ fontWeight: 'bold' }}> +</Typography>
       </Button>
