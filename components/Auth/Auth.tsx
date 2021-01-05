@@ -6,6 +6,8 @@ import * as yup from 'yup';
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
 import { useRouter } from 'next/router';
+import { projectAuth } from '../../firebase/config';
+import login from '../../pages/login';
 interface AuthProps {}
 
 const FormWrapper = styled.div`
@@ -35,27 +37,50 @@ const StyledForm = styled(Form)`
 const Auth: React.FC<AuthProps> = () => {
   const router = useRouter();
   let schema = yup.object().shape({
-    login: yup
-      .string()
-      .min(3, 'Too short!')
-      .max(50, 'Too long!')
-      .required('Required'),
     password: yup
       .string()
       .min(8, 'Too short!')
       .max(20, 'Too long!')
       .required('Required'),
   });
+  const signup = (email, password) => {
+    projectAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+        console.log('successfully signed up');
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ..
+      });
+  };
+
+  const login = (email, password) => {
+    projectAuth
+      .signInWithEmailAndPassword(email, password)
+      .then((user) => {
+        console.log('successfully signed in');
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ..
+      });
+  };
   return (
     <FormWrapper>
       <Formik
         initialValues={{
-          login: '',
+          email: '',
           password: '',
         }}
         validationSchema={schema}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
+            router.pathname === '/signup'
+              ? signup(values.email, values.password)
+              : login(values.email, values.password);
             setSubmitting(false);
             router.replace('/');
           }, 500);
@@ -65,9 +90,9 @@ const Auth: React.FC<AuthProps> = () => {
           <StyledForm>
             <Field
               component={TextField}
-              type={router.pathname === '/login' ? 'login' : 'signup'}
-              name={router.pathname === '/login' ? 'login' : 'signup'}
-              label={router.pathname === '/login' ? 'Login' : 'Signup'}
+              type={'email'}
+              name={'email'}
+              label={'Email'}
             />
             <Field
               component={TextField}
@@ -81,7 +106,7 @@ const Auth: React.FC<AuthProps> = () => {
           </StyledForm>
         )}
       </Formik>
-      <Link href='/'>
+      <Link href='/signup'>
         <a>Create an account</a>
       </Link>
     </FormWrapper>

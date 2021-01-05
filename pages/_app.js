@@ -8,6 +8,7 @@ import Navbar from '../components/UI/Navbar';
 import IngredientsContextProvider from '../contexts/IngredientsContext';
 import ModalContextProvider from '../contexts/ModalContext';
 import theme from '../src/theme';
+import AuthContextProvider from '../contexts/AuthContext';
 
 class MyApp extends App {
   componentDidMount() {
@@ -33,14 +34,16 @@ class MyApp extends App {
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <ModalContextProvider>
-            <IngredientsContextProvider>
-              <Layout>
-                <Navbar {...pageProps}></Navbar>
-                <Component {...pageProps}></Component>
-              </Layout>
-            </IngredientsContextProvider>
-          </ModalContextProvider>
+          <AuthContextProvider>
+            <ModalContextProvider>
+              <IngredientsContextProvider>
+                <Layout>
+                  <Navbar {...pageProps}></Navbar>
+                  <Component {...pageProps}></Component>
+                </Layout>
+              </IngredientsContextProvider>
+            </ModalContextProvider>
+          </AuthContextProvider>
         </ThemeProvider>
       </>
     );

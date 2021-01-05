@@ -4,7 +4,9 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
+import { useEffect, useState, useContext } from 'react';
+import { projectAuth } from '../../firebase/config';
 
 function a11yProps(index) {
   return {
@@ -39,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const matches = useMediaQuery('(max-width:600px)');
   const classes = useStyles();
+  const { auth } = useContext(AuthContext);
   const router = useRouter();
   const [value, setValue] = useState(
     router.pathname === '/' ? 0 : router.pathname === '/orders' ? 1 : 2
@@ -74,8 +77,15 @@ const Navbar = () => {
           classes={{ textColorInherit: classes.textColorInherit }}
         />
         <Tab
-          onClick={() => router.replace('/login')}
-          label='Login'
+          onClick={() => {
+            if (auth) {
+              projectAuth.signOut();
+              router.replace('/login');
+            } else {
+              router.replace('/login');
+            }
+          }}
+          label={auth ? 'Logout' : 'Login'}
           {...a11yProps(2)}
           classes={{ textColorInherit: classes.textColorInherit }}
         />

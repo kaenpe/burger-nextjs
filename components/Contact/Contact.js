@@ -7,6 +7,7 @@ import { Button } from '@material-ui/core';
 import { IngredientsContext } from '../../contexts/IngredientsContext';
 import { useFirestore } from '../hooks/useFirestore';
 import { useRouter } from 'next/router';
+import { AuthContext } from '../../contexts/AuthContext';
 import uuid from 'react-uuid';
 const FormWrapper = styled.div`
   grid-row: 2;
@@ -27,6 +28,8 @@ const Contact = () => {
     setIngredients,
     setIngredientsOrder,
   } = useContext(IngredientsContext);
+
+  const { auth } = useContext(AuthContext);
   const router = useRouter();
   const order = (contact) => {
     const ingredientsList = {
@@ -70,7 +73,7 @@ const Contact = () => {
       <Formik
         initialValues={{
           name: '',
-          email: '',
+          email: auth,
           city: '',
           street: '',
           zipcode: '',
@@ -105,6 +108,7 @@ const Contact = () => {
               type='email'
               name='email'
               label='email'
+              placeholder={auth}
             />
             <Field component={TextField} type='City' name='city' label='City' />
 

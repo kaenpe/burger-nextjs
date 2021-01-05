@@ -1,10 +1,26 @@
-import React, {createContext,  useState} from 'react'
+import React, { createContext, useEffect, useState } from 'react';
+import { projectAuth } from '../firebase/config';
 export const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
-const [Auth, setAuth] = useState();
-const value = { Auth, setAuth };
-return (
-<AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-);
+  const [auth, setAuth] = useState(null);
+  useEffect(() => {
+    projectAuth.onAuthStateChanged((user) => {
+      if (user) {
+        setAuth(user.email);
+      } else {
+        setAuth(null);
+        // User is signed out.
+        // ...
+      }
+    });
+  }, []);
+
+  const value = { auth, setAuth };
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 export default AuthContextProvider;
+//styled//
+//vars//
+//states//
+//functions//
+//effects//
