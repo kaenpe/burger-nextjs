@@ -18,7 +18,7 @@ export const getStaticProps = async () => {
           id: doc.id,
           createdAt: new Date(
             doc.data().createdAt.seconds * 1000
-          ).toLocaleDateString('en-US'),
+          ).toLocaleDateString('en-gb'),
         });
       });
     });

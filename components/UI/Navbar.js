@@ -40,9 +40,13 @@ const Navbar = () => {
   const matches = useMediaQuery('(max-width:600px)');
   const classes = useStyles();
   const router = useRouter();
-  const [value, setValue] = useState(router.pathname === '/' ? 0 : router.pathname === '/orders' ? 1:2);
+  const [value, setValue] = useState(
+    router.pathname === '/' ? 0 : router.pathname === '/orders' ? 1 : 2
+  );
   useEffect(() => {
-    setValue(router.pathname === '/' ? 0 : router.pathname === '/orders' ? 1:2);
+    setValue(
+      router.pathname === '/' ? 0 : router.pathname === '/orders' ? 1 : 2
+    );
   }, [router.pathname]);
   const handleChange = (e, newValue) => {
     setValue(newValue);
@@ -70,7 +74,7 @@ const Navbar = () => {
           classes={{ textColorInherit: classes.textColorInherit }}
         />
         <Tab
-          onClick={() => router.replace('/auth')}
+          onClick={() => router.replace('/login')}
           label='Login'
           {...a11yProps(2)}
           classes={{ textColorInherit: classes.textColorInherit }}

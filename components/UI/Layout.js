@@ -7,10 +7,6 @@ const StyledLayout = styled.main`
   grid-template-rows: ${({ path }) =>
     path === '/' ? '56px 1fr auto' : path === '/contact' ? '56px 1fr' : null};
   z-index: 100;
-  grid-gap: ${({ path }) => (path === '/orders' ? '5%' : null)};
-  padding: ${({ path }) => (path === '/orders' ? '3%' : null)};
-  align-items: ${({ path }) => (path === '/orders' ? 'center' : null)};
-  justify-content: ${({ path }) => (path === '/orders' ? 'center' : null)};
   grid-auto-rows: ${({ path }) => (path === '/checkout' ? '50px auto' : null)};
   @media (min-width: 600px) {
     grid-template-columns: ${({ path }) =>

@@ -2,6 +2,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import App from 'next/app';
 import Head from 'next/head';
+import '../styles/globals.css';
 import Layout from '../components/UI/Layout';
 import Navbar from '../components/UI/Navbar';
 import IngredientsContextProvider from '../contexts/IngredientsContext';

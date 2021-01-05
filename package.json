@@ -22,7 +22,7 @@
     "formik": "^2.1.5",
     "formik-material-ui": "^3.0.0",
     "framer-motion": "^2.4.3-beta.2",
-    "next": "9.5.2",
+    "next": "^10.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-uuid": "^1.0.2",
