@@ -44,19 +44,28 @@ const Navbar = () => {
   const matches = useMediaQuery('(max-width:600px)');
   const classes = useStyles();
   const { auth } = useContext(AuthContext);
-  const {
-    ingredients,
-    setIngredients,
-    ingredientsOrder,
-    setIngredientsOrder,
-  } = useContext(IngredientsContext);
+  const { setIngredients, setIngredientsOrder } = useContext(
+    IngredientsContext
+  );
   const router = useRouter();
   const [value, setValue] = useState(
-    router.pathname === '/' ? 0 : router.pathname === '/orders' ? 1 : 2
+    router.pathname === '/'
+      ? 0
+      : router.pathname === '/orders'
+      ? 1
+      : router.pathname === ('/login' || '/signup')
+      ? 2
+      : 0
   );
   useEffect(() => {
     setValue(
-      router.pathname === '/' ? 0 : router.pathname === '/orders' ? 1 : 2
+      router.pathname === '/'
+        ? 0
+        : router.pathname === '/orders'
+        ? 1
+        : router.pathname === ('/login' || '/signup')
+        ? 2
+        : 0
     );
   }, [router.pathname]);
   const handleChange = (e, newValue) => {

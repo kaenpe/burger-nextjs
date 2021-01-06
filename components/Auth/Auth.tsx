@@ -6,8 +6,7 @@ import * as yup from 'yup';
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
 import { useRouter } from 'next/router';
-import { projectAuth } from '../../firebase/config';
-import login from '../../pages/login';
+import { useAuth } from '../hooks/useAuth';
 interface AuthProps {}
 
 const FormWrapper = styled.div`
@@ -43,31 +42,7 @@ const Auth: React.FC<AuthProps> = () => {
       .max(20, 'Too long!')
       .required('Required'),
   });
-  const signup = (email, password) => {
-    projectAuth
-      .createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        console.log('successfully signed up');
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ..
-      });
-  };
 
-  const login = (email, password) => {
-    projectAuth
-      .signInWithEmailAndPassword(email, password)
-      .then((user) => {
-        console.log('successfully signed in');
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ..
-      });
-  };
   return (
     <FormWrapper>
       <Formik
@@ -79,8 +54,8 @@ const Auth: React.FC<AuthProps> = () => {
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             router.pathname === '/signup'
-              ? signup(values.email, values.password)
-              : login(values.email, values.password);
+              ? useAuth(values.email, values.password, 'signup')
+              : useAuth(values.email, values.password, 'login');
             setSubmitting(false);
             router.replace('/');
           }, 500);
