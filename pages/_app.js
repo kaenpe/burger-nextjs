@@ -38,7 +38,7 @@ const MyApp = ({ Component, pageProps }) => {
         <title>Burger Builder</title>
         <meta
           name='viewport'
-          content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no'
+          content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no'
         />
       </Head>
       <ThemeProvider theme={theme}>
