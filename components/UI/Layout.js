@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
+import { useContext, useEffect } from 'react';
 import styled from 'styled-components';
+import { OrderContext } from '../../contexts/OrderContext';
 const StyledLayout = styled.main`
   height: ${({ path }) =>
     path === '/checkout' || path === '/' ? '100vh' : 'auto'};
@@ -18,7 +20,12 @@ const StyledLayout = styled.main`
   }
 `;
 const Layout = ({ children }) => {
+  const { setOrder } = useContext(OrderContext);
   const router = useRouter();
+  useEffect(() => {
+    router.pathname === ('/contact' || '/checkout') ? null : setOrder(false);
+  }, []);
+
   return (
     <StyledLayout path={router.pathname} className='layout-wrapper'>
       {/* <Navbar></Navbar> */}

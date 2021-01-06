@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Orders from '../components/Orders/Orders';
+import { AuthContext } from '../contexts/AuthContext';
 import { projectFirestore } from '../firebase/config';
 
 const orders = ({ orders }) => {
+  const { auth } = useContext(AuthContext);
   return <Orders orders={orders}></Orders>;
 };
 export const getStaticProps = async () => {

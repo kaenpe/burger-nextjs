@@ -7,7 +7,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 const StyledList = styled.ul`
   width: 100%;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 45px;
   padding: 5px;
   text-align: start;
   justify-content: center;
@@ -42,13 +42,12 @@ const Orders: React.FC<OrdersProps> = ({ orders }) => {
     <>
       {auth ? (
         orders
-          .filter((a) => a.contact.email === auth)
+          .filter((order) => order.contact.email === auth)
           .map(
             ({ createdAt, price, contact: { name, email, city, street } }) => {
               return (
                 <StyledList key={uuid()}>
                   <OrderElement value={name} text={'Name'} />
-                  <OrderElement value={email} text={'Email'} />
                   <OrderElement value={city} text={'City'} />
                   <OrderElement value={street} text={'Street'} />
                   <OrderElement value={price} text={`Price`} />

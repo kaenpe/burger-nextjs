@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { IngredientsContext } from '../../contexts/IngredientsContext';
 import { ModalContext } from '../../contexts/ModalContext';
 import { AuthContext } from '../../contexts/AuthContext';
+import { OrderContext } from '../../contexts/OrderContext';
 import Modal from '../Modal/Modal';
 import Burger from './Burger';
 import BurgerControls, { StyledLabel } from './BurgerControls';
@@ -16,6 +17,7 @@ const ControlsWrapper = styled.div`
   flex-direction: column;
   grid-area: controls;
   padding: 15px;
+  padding-bottom: 70px;
 `;
 
 const StyledModalButtons = styled.div`
@@ -32,6 +34,7 @@ const StyledPriceLabel = styled(StyledLabel)`
 const BurgerBuilder = () => {
   const [totalPrice, setTotalPrice] = useState(1.3);
   const { showModal, setShowModal } = useContext(ModalContext);
+  const { setOrder } = useContext(OrderContext);
   const { auth } = useContext(AuthContext);
   const {
     ingredients,
@@ -122,6 +125,7 @@ const BurgerBuilder = () => {
               style={{ minWidth: '120px', margin: '10px' }}
               variant='contained'
               color='primary'
+              onClick={() => setOrder(true)}
             >
               Confirm
             </Button>

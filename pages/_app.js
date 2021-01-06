@@ -1,16 +1,15 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import Head from 'next/head';
-import Home from '../pages/index';
 import '../styles/globals.css';
 import Layout from '../components/UI/Layout';
 import Navbar from '../components/UI/Navbar';
 import IngredientsContextProvider from '../contexts/IngredientsContext';
 import ModalContextProvider from '../contexts/ModalContext';
 import theme from '../src/theme';
-import AuthContextProvider, { AuthContext } from '../contexts/AuthContext';
-import { useContext, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import AuthContextProvider from '../contexts/AuthContext';
+import OrderContextProvider from '../contexts/OrderContext';
+import { useEffect } from 'react';
 
 const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
@@ -20,18 +19,6 @@ const MyApp = ({ Component, pageProps }) => {
     }
   }, []);
 
-  const router = useRouter();
-  const authContext = useContext(AuthContextProvider);
-  const auth = authContext;
-  let allowed = true;
-  if (
-    (router.pathname === '/contact' || router.pathname === '/checkout') &&
-    !auth
-  ) {
-    allowed = false;
-  }
-
-  const ComponentToRender = allowed ? Component : Home;
   return (
     <>
       <Head>
@@ -47,10 +34,12 @@ const MyApp = ({ Component, pageProps }) => {
         <AuthContextProvider>
           <ModalContextProvider>
             <IngredientsContextProvider>
-              <Layout>
-                <Navbar {...pageProps}></Navbar>
-                <Component {...pageProps}></Component>
-              </Layout>
+              <OrderContextProvider>
+                <Layout>
+                  <Navbar {...pageProps}></Navbar>
+                  <Component {...pageProps}></Component>
+                </Layout>
+              </OrderContextProvider>
             </IngredientsContextProvider>
           </ModalContextProvider>
         </AuthContextProvider>

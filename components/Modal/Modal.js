@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useContext } from 'react';
 import styled from 'styled-components';
 import { ModalContext } from '../../contexts/ModalContext';
+
 const StyledBackdrop = styled.div`
   width: 100vw;
   height: 100vh;
