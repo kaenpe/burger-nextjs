@@ -81,9 +81,15 @@ const Auth: React.FC<AuthProps> = () => {
           </StyledForm>
         )}
       </Formik>
-      <Link href='/signup'>
-        <a>Create an account</a>
-      </Link>
+      {router.pathname === '/login' ? (
+        <Link href='/signup'>
+          <a>Create an account</a>
+        </Link>
+      ) : (
+        <Link href='/login'>
+          <a>Sign in</a>
+        </Link>
+      )}
     </FormWrapper>
   );
 };

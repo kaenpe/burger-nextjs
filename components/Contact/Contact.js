@@ -14,12 +14,25 @@ const FormWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  border: 2px solid #ccc;
+  box-shadow: 2px 2px 1px #ccc;
+  width: 500px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 100px;
 `;
 
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   width: 50vw;
+  align-items: center;
+  .MuiButton-root,
+  .MuiTextField-root {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 450px;
+  }
 `;
 const Contact = () => {
   const {

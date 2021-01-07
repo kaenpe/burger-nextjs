@@ -1,13 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Orders from '../components/Orders/Orders';
-import { AuthContext } from '../contexts/AuthContext';
 import { projectFirestore } from '../firebase/config';
 
 const orders = ({ orders }) => {
-  const { auth } = useContext(AuthContext);
   return <Orders orders={orders}></Orders>;
 };
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const orders = [];
   await projectFirestore
     .collection('orders')
@@ -26,7 +24,6 @@ export const getStaticProps = async () => {
     });
 
   return {
-    revalidate: 1,
     props: {
       orders,
     },

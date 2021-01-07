@@ -13,7 +13,7 @@ export const AuthContextProvider = ({ children }) => {
         // ...
       }
     });
-  }, []);
+  }, [auth]);
 
   const value = { auth, setAuth };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
