@@ -16,7 +16,7 @@ const FormWrapper = styled.div`
   flex-direction: column;
   border: 2px solid #ccc;
   box-shadow: 2px 2px 1px #ccc;
-  width: 500px;
+  width: 400px;
   padding: 10px;
   margin: 0 auto;
   margin-top: 100px;
@@ -31,7 +31,7 @@ const StyledForm = styled(Form)`
   .MuiTextField-root {
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 450px;
+    width: 350px;
   }
 `;
 const Contact = () => {
