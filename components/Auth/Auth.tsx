@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TextField } from 'formik-material-ui';
 import Link from 'next/link';
 import { Formik, Form, Field } from 'formik';
@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
 import { useRouter } from 'next/router';
-import { useAuth } from '../hooks/useAuth';
+import { AuthContext } from '../../contexts/AuthContext';
 interface AuthProps {}
 
 const FormWrapper = styled.div`
@@ -35,6 +35,7 @@ const StyledForm = styled(Form)`
 `;
 const Auth: React.FC<AuthProps> = () => {
   const router = useRouter();
+  const { login, signup } = useContext(AuthContext);
   let schema = yup.object().shape({
     password: yup
       .string()
@@ -54,8 +55,8 @@ const Auth: React.FC<AuthProps> = () => {
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             router.pathname === '/signup'
-              ? useAuth(values.email, values.password, 'signup')
-              : useAuth(values.email, values.password, 'login');
+              ? signup(values.email, values.password)
+              : login(values.email, values.password);
             setSubmitting(false);
             router.replace('/');
           }, 500);

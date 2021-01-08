@@ -86,7 +86,7 @@ const Contact = () => {
       <Formik
         initialValues={{
           name: '',
-          email: auth,
+          email: auth.email,
           city: '',
           street: '',
           zipcode: '',

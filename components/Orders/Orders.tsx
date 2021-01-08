@@ -42,20 +42,18 @@ const Orders: React.FC<OrdersProps> = ({ orders }) => {
     <>
       {auth ? (
         orders
-          .filter((order) => order.contact.email === auth)
-          .map(
-            ({ createdAt, price, contact: { name, email, city, street } }) => {
-              return (
-                <StyledList key={uuid()}>
-                  <OrderElement value={name} text={'Name'} />
-                  <OrderElement value={city} text={'City'} />
-                  <OrderElement value={street} text={'Street'} />
-                  <OrderElement value={price} text={`Price`} />
-                  <OrderElement value={createdAt} text={'Ordered'} />
-                </StyledList>
-              );
-            }
-          )
+          .filter((order) => order.contact.email === auth.email)
+          .map(({ createdAt, price, contact: { name, city, street } }) => {
+            return (
+              <StyledList key={uuid()}>
+                <OrderElement value={name} text={'Name'} />
+                <OrderElement value={city} text={'City'} />
+                <OrderElement value={street} text={'Street'} />
+                <OrderElement value={price} text={`Price`} />
+                <OrderElement value={createdAt} text={'Ordered'} />
+              </StyledList>
+            );
+          })
       ) : (
         <StyledLoginMessage>
           You need to sign in to see your orders.

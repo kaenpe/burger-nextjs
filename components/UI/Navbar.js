@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const matches = useMediaQuery('(max-width:600px)');
   const classes = useStyles();
-  const { auth } = useContext(AuthContext);
+  const { auth, signOut } = useContext(AuthContext);
   const { setIngredients, setIngredientsOrder } = useContext(
     IngredientsContext
   );
@@ -53,7 +53,9 @@ const Navbar = () => {
       ? 0
       : router.pathname === '/orders'
       ? 1
-      : router.pathname === ('/login' || '/signup')
+      : router.pathname === '/login'
+      ? 2
+      : router.pathname === '/signup'
       ? 2
       : 0
   );
@@ -63,7 +65,9 @@ const Navbar = () => {
         ? 0
         : router.pathname === '/orders'
         ? 1
-        : router.pathname === ('/login' || '/signup')
+        : router.pathname === '/login'
+        ? 2
+        : router.pathname === '/signup'
         ? 2
         : 0
     );
@@ -97,7 +101,7 @@ const Navbar = () => {
         <Tab
           onClick={() => {
             if (auth) {
-              projectAuth.signOut();
+              signOut();
               setIngredients([
                 { type: 'Meat', price: 1.3, quantity: 1 },
                 { type: 'Cheese', price: 0.4, quantity: 0 },
