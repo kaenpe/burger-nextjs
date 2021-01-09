@@ -5,7 +5,7 @@ import { projectFirestore } from '../firebase/config';
 const orders = ({ orders }) => {
   return <Orders orders={orders}></Orders>;
 };
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const orders = [];
   await projectFirestore
     .collection('orders')
