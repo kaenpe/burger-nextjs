@@ -18,21 +18,11 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   const signup = (email, password) => {
-    projectAuth
-      .createUserWithEmailAndPassword(email, password)
-      .then((user) => {})
-      .catch((error) => {
-        // ..
-      });
+    projectAuth.createUserWithEmailAndPassword(email, password);
   };
 
   const login = (email, password) => {
-    projectAuth
-      .signInWithEmailAndPassword(email, password)
-      .then((user) => {})
-      .catch((error) => {
-        // ..
-      });
+    projectAuth.signInWithEmailAndPassword(email, password);
   };
 
   const signOut = () => {

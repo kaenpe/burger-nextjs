@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import { AuthContext } from '../../contexts/AuthContext';
 import { IngredientsContext } from '../../contexts/IngredientsContext';
 import { useEffect, useState, useContext } from 'react';
-import { projectAuth } from '../../firebase/config';
 import uuid from 'react-uuid';
 
 function a11yProps(index) {
