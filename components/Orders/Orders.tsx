@@ -37,7 +37,7 @@ interface OrdersProps {
   }>;
 }
 const Orders: React.FC<OrdersProps> = ({ orders }) => {
-  const { auth } = useContext(AuthContext);
+  const { auth, loading } = useContext(AuthContext);
   return (
     <>
       {auth ? (
@@ -54,11 +54,11 @@ const Orders: React.FC<OrdersProps> = ({ orders }) => {
               </StyledList>
             );
           })
-      ) : (
+      ) : auth && !loading ? (
         <StyledLoginMessage>
           You need to sign in to see your orders.
         </StyledLoginMessage>
-      )}
+      ) : null}
     </>
   );
 };

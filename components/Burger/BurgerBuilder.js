@@ -43,7 +43,6 @@ const BurgerBuilder = () => {
     setIngredientsOrder,
   } = useContext(IngredientsContext);
   useEffect(() => {
-    console.log(auth);
     return () => {
       setShowModal(false);
     };
